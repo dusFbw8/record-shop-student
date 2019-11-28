@@ -1,0 +1,28 @@
+{
+  "records": [
+    {
+      "id": "wmbaZiGQ",
+      "title": "NEW1",
+      "artist": "NEW1",
+      "year": 2020,
+      "image": "www.",
+      "price": 2929
+    },
+    {
+      "id": "y8iAJFmu",
+      "title": "NEW1",
+      "artist": "NEW1",
+      "year": 2020,
+      "image": "www.",
+      "price": 2929
+    },
+    {
+      "id": "SIJZ_7Uf",
+      "title": "NEW1",
+      "artist": "NEW1",
+      "year": 2020,
+      "image": "www.",
+      "price": 2929
+    }
+  ]
+}
