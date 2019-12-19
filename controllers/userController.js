@@ -1,18 +1,12 @@
-var low = require("lowdb"); //low
-var FileSync = require("lowdb/adapters/FileSync"); //low
-var shortid = require("shortid");
+const UserModel = require("../models/User_Model");
 
-var adapter = new FileSync("db.json"); //low
-var db = low(adapter); //low
-exports.getRecords = (req, res, next) => {
-  var result = db
-    .get("records")
-    .find()
-    .value();
-  res.send(result);
-  next();
+exports.getUsers = (req, res, next) => {
+  UserModel.find().then(result => {
+    res.send(result);
+  });
 };
-exports.pushRecord = (req, res, next) => {
+
+/* exports.postRecord = (req, res, next) => {
   db.get("records")
     .push({
       id: shortid.generate(),
@@ -20,7 +14,7 @@ exports.pushRecord = (req, res, next) => {
       artist: req.body.artist,
       year: req.body.year,
       image: req.body.image,
-      price: req.body.price,
+      price: req.body.price
     })
     .write();
   res.send("updated");
@@ -77,4 +71,4 @@ exports.putRecord = (req, res, next) => {
     res.send("No such an ID");
   }
   next();
-};
+}; */

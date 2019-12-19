@@ -4,24 +4,38 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const cors = require("./middleware/corsMiddleware");
-//LOWDB
+//MONGOOSE
+const mongoose = require("mongoose");
+(async function() {
+  mongoose.connect("mongodb://127.0.0.1/record-shop", {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useUnifiedTopology: true
+  });
+
+  mongoose.connection.on("error", console.error);
+  mongoose.connection.on("open", () => {
+    console.log("Data connection established");
+  });
+})();
+
+/* //LOWDB
 const low = require("lowdb");
 const FileSync = require("lowdb/adapters/FileSync");
 
 const adapter = new FileSync("db.json");
-const db = low(adapter);
+const db = low(adapter); */
 //shortid
-var shortid = require("shortid");
+//var shortid = require("shortid");
 /** ROUTERS */
-const indexRouter = require("./routes/index");
 const apiRouter = require("./routes/api");
 
 /** INIT */
 const app = express();
 
-db.defaults({
+/* db.defaults({
   records: []
-}).write();
+}).write(); */
 
 /** LOGGING */
 app.use(logger("dev"));
@@ -37,10 +51,7 @@ app.use(cors);
 app.use(express.static(path.join(__dirname, "public")));
 
 /** ROUTES */
-app.use("/", indexRouter);
-app.use("/api", apiRouter);
-
-
+app.use("/", apiRouter);
 //ERROR
 
 app.use((req, res, next) => {
@@ -52,6 +63,5 @@ app.use(function(err, req, res, next) {
   console.error(err.stack);
   res.status(500).send(err.message);
 });
-
 /** EXPORT PATH */
 module.exports = app;

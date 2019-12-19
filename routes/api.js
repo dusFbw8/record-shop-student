@@ -1,19 +1,26 @@
 const express = require("express");
 const router = express.Router();
 //shortid
-var { getRecords, pushRecord } = require("../userController");
-var {
+var { getUsers } = require("../controllers/userController");
+var { getOrders } = require("../controllers/OrderController");
+var { getRecords } = require("../controllers/RecordController");
+/* var {
   getRecords,
-  pushRecord,
+  getUsers,
+  getOrders,
+  postRecord,
   getRecordsId,
   deleteRecordsId,
   putRecord
-} = require("../userController");
+} = require("../controllers/userController"); */
+
 /* GET users listing. */
 router.get("/records", getRecords);
+router.get("/users", getUsers);
+router.get("/orders", getOrders);
 /* POST users listing. */
-router.post("/records", pushRecord);
+/* router.post("/records", postRecord);
 router.get("/records/:id", getRecordsId);
 router.delete("/records/:id", deleteRecordsId);
-router.put("/records/:id", putRecord);
+router.put("/records/:id", putRecord); */
 module.exports = router;
